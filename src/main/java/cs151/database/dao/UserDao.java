@@ -47,5 +47,18 @@ public class UserDao {
         }
         return user;
     }
-
+    public void addUser(User newUser) {
+        String query = "INSERT INTO user VALUES(?, ?, ?, ?)";
+        PreparedStatement ps;
+        try {
+            ps = this.conn.prepareStatement(query);
+            ps.setString(1, newUser.getUserId());
+            ps.setString(2, newUser.getPassword());
+            ps.setString(3, newUser.getSecurityQuestion());
+            ps.setString(4, newUser.getSecurityAnswer());
+            ps.execute();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
