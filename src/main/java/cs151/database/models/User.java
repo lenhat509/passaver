@@ -15,6 +15,7 @@ public class User {
         this.securityAnswer = securityAnswer;
     }
 
+
     public String getUserId() {
         return userId;
     }
@@ -34,8 +35,14 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    // for testing purpose
+
+    @Override
     public String toString() {
-        return this.userId + " " + this.password + " " + this.securityQuestion + " " + this.securityAnswer;
+        return "User{" +
+                "userId='" + userId + '\'' +
+                ", password='" + password + '\'' +
+                ", securityQuestion='" + securityQuestion + '\'' +
+                ", securityAnswer='" + securityAnswer + '\'' +
+                '}';
     }
 }
