@@ -61,4 +61,19 @@ public class UserDao {
             System.out.println(e.getMessage());
         }
     }
+
+    public void resetPassword(String userId, String newPassword) {
+        String query = "UPDATE user SET password = ? WHERE userId = ?";
+        PreparedStatement ps;
+
+        try {
+            ps = this.conn.prepareStatement(query);
+            ps.setString(1, newPassword);
+            ps.setString(2, userId);
+            ps.execute();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
 }
