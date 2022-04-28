@@ -22,16 +22,16 @@ public class Passaver extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+        //launch();
 
         // test database connectivity
-//        System.out.println("hello");
-//        DatabaseConnection dbconnect = DatabaseConnection.getDBConnection();
-//        Connection conn = dbconnect.getConnection();
-//        UserDao userDb = new UserDao(conn);
-//
-//        User user = userDb.search("nhatle");
-//        System.out.println(user);
+        System.out.println("hello");
+        DatabaseConnection dbconnect = DatabaseConnection.getDBConnection();
+        Connection conn = dbconnect.getConnection();
+        UserDao userDb = new UserDao(conn);
+
+        User user = userDb.search("nhatle");
+        System.out.println(user);
 
     }
 }
