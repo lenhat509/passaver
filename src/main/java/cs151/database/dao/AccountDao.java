@@ -134,7 +134,7 @@ public class AccountDao{
                     String email = accounts.getString("email");
                     String password = accounts.getString("password");
                     String username = accounts.getString("username");
-                    LocalDate creationDate = LocalDate.parse(accounts.getString("creationDate"));
+                    LocalDate creationDate = LocalDate.parse(accounts .getString("creationDate"));
                     LocalDate expirationDate = LocalDate.parse(accounts.getString("expirationDate"));
                     Account account = new Account(accountId, appName, username, email, expirationDate, creationDate, password);
                     accountList.add(account);
