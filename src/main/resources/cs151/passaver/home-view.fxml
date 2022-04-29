@@ -14,36 +14,45 @@
    <children>
       <HBox layoutX="-1.0" layoutY="-1.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: lightcyan;">
          <children>
-            <Pane prefHeight="600.0" prefWidth="321.0">
+            <Pane prefHeight="600.0" prefWidth="271.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="112.0" prefWidth="300.0" text="Passaver" textAlignment="CENTER">
+                  <Label alignment="CENTER" prefHeight="102.0" prefWidth="271.0" text="Passaver" textAlignment="CENTER">
                      <font>
                         <Font size="40.0" />
                      </font>
                   </Label>
-                  <Button fx:id="createPasswordBtn" layoutX="6.0" layoutY="540.0" mnemonicParsing="false" onMouseClicked="#createPassword" prefHeight="45.0" prefWidth="300.0" text="Save New Password" />
-                  <Pane layoutX="6.0" layoutY="203.0" opacity="0.32" prefHeight="233.0" prefWidth="300.0" style="-fx-background-color: gainsboro;">
+                  <Button fx:id="createPasswordBtn" layoutX="14.0" layoutY="540.0" mnemonicParsing="false" onMouseClicked="#createPassword" prefHeight="44.0" prefWidth="251.0" text="Save New Password" />
+                  <Pane layoutX="14.0" layoutY="203.0" prefHeight="227.0" prefWidth="251.0" style="-fx-background-color: white;">
                      <children>
-                        <Label alignment="CENTER" layoutX="31.0" layoutY="14.0" prefHeight="35.0" prefWidth="126.0" style="-fx-background-color: gainsboro;" text="User Name" />
+                        <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="32.0" prefWidth="92.0" text="Current user:">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
+                        <Label fx:id="userId" alignment="CENTER" layoutX="109.0" layoutY="14.0" prefHeight="32.0" prefWidth="134.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="13.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#logout" prefHeight="32.0" prefWidth="225.0" style="-fx-background-color: lightgreen; -fx-border-radius: 10;" text="Log Out" />
                      </children>
                   </Pane>
                </children>
             </Pane>
-            <Pane prefHeight="600.0" prefWidth="495.0">
+            <Pane prefHeight="600.0" prefWidth="523.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="54.0" prefWidth="479.0" text="Saved Passwords" />
-                  <ScrollPane layoutX="-3.0" layoutY="104.0" prefHeight="480.0" prefWidth="487.0">
+                  <Label alignment="CENTER" prefHeight="54.0" prefWidth="523.0" text="Saved Passwords" />
+                  <ScrollPane layoutX="7.0" layoutY="104.0" prefHeight="480.0" prefWidth="504.0" style="-fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: lightcyan;">
                      <content>
-                        <FlowPane fx:id="accountList" prefHeight="539.0" prefWidth="470.0">
+                        <FlowPane fx:id="accountList" prefHeight="476.0" prefWidth="487.0">
                            <children>
 
                            </children>
                         </FlowPane>
                      </content>
                   </ScrollPane>
-                  <TextField fx:id="searchTextField" layoutY="67.0" prefHeight="26.0" prefWidth="307.0" />
-                  <Button fx:id="searchBtn" layoutX="398.0" layoutY="67.0" mnemonicParsing="false" onMouseClicked="#searchAccount" prefHeight="26.0" prefWidth="86.0" text="Search" />
-                  <Button fx:id="cancelBtn" disable="true" layoutX="330.0" layoutY="67.0" mnemonicParsing="false" onMouseClicked="#resetAccountList" prefHeight="26.0" prefWidth="61.0" text="Cancel" />
+                  <TextField fx:id="searchTextField" layoutX="9.0" layoutY="67.0" prefHeight="26.0" prefWidth="307.0" />
+                  <Button fx:id="searchBtn" layoutX="420.0" layoutY="67.0" mnemonicParsing="false" onMouseClicked="#searchAccount" prefHeight="26.0" prefWidth="86.0" text="Search" />
+                  <Button fx:id="cancelBtn" disable="true" layoutX="342.0" layoutY="67.0" mnemonicParsing="false" onMouseClicked="#resetAccountList" prefHeight="26.0" prefWidth="61.0" text="Cancel" />
                </children>
             </Pane>
          </children>

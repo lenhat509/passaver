@@ -3,7 +3,6 @@ package cs151.passaver;
 import cs151.database.dao.AccountDao;
 import cs151.database.models.Account;
 import cs151.database.models.User;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -15,7 +14,7 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class HomeController {
 
@@ -30,9 +29,12 @@ public class HomeController {
     @FXML
     public Button cancelBtn;
 
+    @FXML
+    public Label userId;
 
     public void initialize() {
         getFullAccountList();
+        userId.setText(shared.getLoginUser().getUserId());
     }
 
     @FXML
@@ -67,6 +69,7 @@ public class HomeController {
             appName.setText(account.getAppName());
             email.setText(account.getEmail());
             userName.setText(account.getUsername());
+            accountPane.setAccessibleText(account.getAccountId());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -89,5 +92,10 @@ public class HomeController {
         searchTextField.setText("");
         accountList.getChildren().clear();
         getFullAccountList();
+    }
+
+    public void logout(MouseEvent mouseEvent) {
+        shared.setLoginUser(null);
+        shared.navigateTo("login-view.fxml");
     }
 }

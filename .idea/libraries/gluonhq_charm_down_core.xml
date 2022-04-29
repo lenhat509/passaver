@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="gluonhq.charm.down.core" type="repository">
+    <properties maven-id="com.gluonhq:charm-down-core:3.0.0" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/gluonhq/charm-down-core/3.0.0/charm-down-core-3.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

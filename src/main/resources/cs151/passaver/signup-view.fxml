@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: lightcyan;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="cs151.passaver.SignupController">
+    <children>
+      <Pane layoutX="336.0" layoutY="84.0" prefHeight="454.0" prefWidth="436.0" style="-fx-background-color: lightblue;">
+         <children>
+              <Text layoutX="10.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Security Question: " wrappingWidth="167.05242919921875">
+                  <font>
+                      <Font size="18.0" />
+                  </font>
+              </Text>
+              <Text layoutX="9.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password:" wrappingWidth="159.39129638671875">
+                  <font>
+                      <Font size="18.0" />
+                  </font>
+              </Text>
+              <Text layoutX="9.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
+                  <font>
+                      <Font size="18.0" />
+                  </font>
+              </Text>
+              <Text layoutX="11.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UserId:" wrappingWidth="65.2281494140625">
+                  <font>
+                      <Font size="18.0" />
+                  </font>
+              </Text>
+              <TextField fx:id="userIdField" layoutX="181.0" layoutY="38.0" style="-fx-background-color: white;" />
+              <Text layoutX="10.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Answer: ">
+                  <font>
+                      <Font size="18.0" />
+                  </font>
+              </Text>
+            <TextField fx:id="answerField" layoutX="181.0" layoutY="284.0" style="-fx-background-color: white;" />
+              <Button layoutX="289.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#signUp" prefHeight="35.0" prefWidth="99.0" style="-fx-background-color: white;" text="Sign Up" textAlignment="CENTER">
+                  <font>
+                      <Font size="18.0" />
+                  </font>
+              </Button>
+            <RadioButton fx:id="firstQuestion" layoutX="178.0" layoutY="182.0" mnemonicParsing="false" onMouseClicked="#firstQuestionSelected" text="What is the name of your favorite pet?" />
+            <RadioButton fx:id="secondQuestion" layoutX="179.0" layoutY="215.0" mnemonicParsing="false" onMouseClicked="#secondQuestionSelected" text="What color is your car?" />
+            <RadioButton fx:id="thirdQuestion" layoutX="179.0" layoutY="247.0" mnemonicParsing="false" onMouseClicked="#thirdQuestionSelected" text="Who is your favorite super hero?" />
+            <Button layoutX="55.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#backToLogin" prefHeight="35.0" prefWidth="101.0" style="-fx-background-color: white;" text="&lt;&lt;Login">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <PasswordField fx:id="passwordField" layoutX="179.0" layoutY="84.0" />
+            <PasswordField fx:id="confirmPasswordField" layoutX="180.0" layoutY="130.0" />
+         </children>
+      </Pane>
+        <Text layoutX="29.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passaver" wrappingWidth="285.8962707519531">
+            <font>
+                <Font size="72.0" />
+            </font>
+        </Text>
+      <Label fx:id="errorLabel" alignment="CENTER" layoutX="340.0" layoutY="30.0" prefHeight="43.0" prefWidth="429.0" textFill="RED" />
+    </children></AnchorPane>

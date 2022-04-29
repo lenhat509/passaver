@@ -3,7 +3,6 @@ package cs151.passaver;
 import cs151.database.dao.AccountDao;
 import cs151.database.models.Account;
 import cs151.database.models.User;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -11,12 +10,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class SaveNewPasswordController {
+public class EditController {
+    @FXML
+    public AnchorPane editPane;
 
     @FXML
     public TextField appNameField;
@@ -58,21 +60,33 @@ public class SaveNewPasswordController {
     public int passwordMinSize = 8;
 
     private SharedProperty shared = SharedProperty.getSharedProperty();
+    private Account account;
+
+
 
     public void initialize() {
+        String accountId = shared.getAccountEditedId();
+        AccountDao accountDao = shared.getAccountDao();
+        Account account = accountDao.getAccount(accountId);
+        setAccount(account);
+        appNameField.setText(account.getAppName());
+        usernameField.setText(account.getUsername());
+        emailField.setText(account.getEmail());
         String creationDate = LocalDate.now().toString();
         String expirationDate = LocalDate.now().plusMonths(3).toString();
         creationDateField.setText(creationDate);
         expirationDateField.setText(expirationDate);
-    }
 
-    public void saveNewAccount(MouseEvent mouseEvent) {
+    }
+    public void updateAccount(MouseEvent mouseEvent) {
         String appName = appNameField.getText().trim();
         String username = usernameField.getText().trim();
         String email = emailField.getText().trim();
         String password = passwordField.getText().trim();
         String confirmPw = confirmPasswordField.getText().trim();
         Boolean isMatched = password.equals(confirmPw);
+
+
 
         if(appName.isEmpty())
         {
@@ -86,7 +100,7 @@ public class SaveNewPasswordController {
             return;
         }
 
-        if(password.length() < passwordMinSize)
+        if(password.length() < passwordMinSize && password.length() != 0)
         {
             errorLabel.setText("Password must have at least "+passwordMinSize+ " characters");
             return;
@@ -97,10 +111,16 @@ public class SaveNewPasswordController {
             errorLabel.setText("Passwords do not match");
             return;
         }
-        Account newAccount = new Account(appName, email, username, password);
+
+        if(password.length() != 0)
+            account.setPassword(passwordField.getText());
+        account.setAppName(appNameField.getText());
+        account.setUsername(usernameField.getText());
+        account.setEmail(emailField.getText());
+        account.setCreationDate(LocalDate.parse(creationDateField.getText()));
+        account.setExpirationDate(LocalDate.parse(expirationDateField.getText()));
         AccountDao accountDao = shared.getAccountDao();
-        User loginUser = shared.getLoginUser();
-        accountDao.saveAccount(loginUser.getUserId(), newAccount);
+        accountDao.editAccount(account);
         shared.navigateTo("home-view.fxml");
     }
 
@@ -133,8 +153,6 @@ public class SaveNewPasswordController {
         }
 
         String generatedPassword = sb.toString();
-        passwordField.setText("");
-        passwordField.setText(generatedPassword);
 
         passwordDisplay.setText("");
         passwordDisplay.setText(generatedPassword);
@@ -150,5 +168,13 @@ public class SaveNewPasswordController {
             cc.putString(passwordDisplay.getText());
             Clipboard.getSystemClipboard().setContent(cc);
         }
+    }
+
+    public void cancelUpdate(MouseEvent mouseEvent) {
+        shared.navigateTo("home-view.fxml");
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }

@@ -16,6 +16,9 @@ public class SharedProperty {
     private AccountDao accountDao;
     private AnchorPane mainPane;
     private User loginUser;
+    private String accountEditedId;;
+
+
 
     private SharedProperty() {
         db = DatabaseConnection.getDBConnection();
@@ -51,6 +54,14 @@ public class SharedProperty {
         this.loginUser = loginUser;
     }
 
+    public String getAccountEditedId() {
+        return accountEditedId;
+    }
+
+    public void setAccountEditedId(String accountEditedId) {
+        this.accountEditedId = accountEditedId;
+    }
+
     public void navigateTo(String fmxlFile)
     {
         FXMLLoader fxmlLoader = new FXMLLoader(Passaver.class.getResource(fmxlFile));
@@ -65,4 +76,5 @@ public class SharedProperty {
             e.printStackTrace();
         }
     }
+
 }

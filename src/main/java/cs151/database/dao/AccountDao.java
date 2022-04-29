@@ -145,4 +145,27 @@ public class AccountDao{
         }
         return accountList;
     }
+
+    public Account getAccount(String id) {
+        String query = "SELECT * FROM account WHERE accountId = ?";
+        Account account = null;
+        try {
+            PreparedStatement ps = this.conn.prepareStatement(query);
+            ps.setString(1, id);
+            if(ps.execute()) {
+                ResultSet accounts = ps.getResultSet();
+                String accountId = accounts.getString("accountId");
+                String appName = accounts.getString("appName");
+                String email = accounts.getString("email");
+                String password = accounts.getString("password");
+                String username = accounts.getString("username");
+                LocalDate creationDate = LocalDate.parse(accounts.getString("creationDate"));
+                LocalDate expirationDate = LocalDate.parse(accounts.getString("expirationDate"));
+                account = new Account(accountId, appName, username, email, expirationDate, creationDate, password);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return account;
+    }
 }
