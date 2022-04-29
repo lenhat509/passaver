@@ -92,11 +92,15 @@ public class Account {
         this.email = email;
     }
 
-    private void setExpirationDate(LocalDate expirationDate) {
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
+    }
+
+    public void setExpirationDate(LocalDate expirationDate) {
         this.expirationDate = expirationDate;
     }
 
-    private void setCreationDate(LocalDate creationDate) {
+    public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
     }
 
