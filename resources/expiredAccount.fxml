@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="62.0" prefWidth="480.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: black;">
+   <children>
+      <Label layoutX="21.0" layoutY="10.0" prefHeight="21.0" prefWidth="90.0" text="App Name: ">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="100.0" layoutY="11.0" prefHeight="21.0" prefWidth="137.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="250.0" layoutY="6.0" prefHeight="26.0" prefWidth="110.0" text="Expiration Date:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="361.0" layoutY="6.0" prefHeight="26.0" prefWidth="110.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="21.0" layoutY="35.0" prefHeight="21.0" prefWidth="90.0" text="Username:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="103.0" layoutY="35.0" prefHeight="21.0" prefWidth="134.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="250.0" layoutY="36.0" prefHeight="20.0" prefWidth="54.0" text="Email:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="306.0" layoutY="36.0" prefHeight="20.0" prefWidth="168.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

@@ -1,9 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Passaver" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="cs151.passaver.Passaver" />
-    <module name="Passaver" />
-    <method v="2">
-      <option name="Make" enabled="true" />
-    </method>
-  </configuration>
-</component>
