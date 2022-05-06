@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import database.dao.AccountDao;
 import database.models.User;
+import edu.sjsu.yazdankhah.crypto.util.PassUtil;
 import database.models.Account;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -57,20 +58,29 @@ public class ReminderController {
 	 */
 	}
 	public Pane createExpiredAccountNode(Account account) {
-		Pane pane = null;
+		Pane accountPane = null;
 		try {
-			pane = (Pane) FXMLLoader.load(getClass().getClassLoader().getResource("expiredAccount.fxml"));
-			Label appName = (Label) pane.getChildren().get(1);
-			Label expirationDate = (Label) pane.getChildren().get(3);
-			Label username = (Label) pane.getChildren().get(5);
-			Label email = (Label) pane.getChildren().get(7);
-			appName.setText(account.getAppName());
-			expirationDate.setText(account.getExpirationDate().toString());
-			username.setText(account.getUsername());
-			email.setText(account.getEmail());
+			accountPane = (Pane) FXMLLoader.load(getClass().getClassLoader().getResource("expiredAccount.fxml"));
+			Label appName = (Label) accountPane.getChildren().get(2);
+            Label email = (Label) accountPane.getChildren().get(4);
+            Label userName = (Label) accountPane.getChildren().get(5);
+            Label password = (Label) accountPane.getChildren().get(7);
+            Label expirationDate = (Label) accountPane.getChildren().get(11);
+            Label creationDate = (Label) accountPane.getChildren().get(10);
+           
+            appName.setText(account.getAppName());
+            email.setText(account.getEmail());
+            userName.setText(account.getUsername());
+            
+            PassUtil passUtil = new PassUtil();
+            String decryptedPw = passUtil.decrypt(account.getPassword());
+            password.setText(decryptedPw);
+            
+            expirationDate.setText(account.getExpirationDate().toString());
+            creationDate.setText(account.getCreationDate().toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return pane;
+		return accountPane;
 	}
 }

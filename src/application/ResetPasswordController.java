@@ -7,6 +7,7 @@ package application;
 
 import database.dao.UserDao;
 import database.models.User;
+import edu.sjsu.yazdankhah.crypto.util.PassUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -42,7 +43,7 @@ public class ResetPasswordController {
 
     private SharedProperty shared = SharedProperty.getSharedProperty();
     private String securityQuestion;
-    private int passwordMinSize = 8;
+    private int passwordMinSize = 1;
 
     /**
      * Initialize sign up page with the first security question selected
@@ -100,8 +101,8 @@ public class ResetPasswordController {
             errorLabel.setText("The security question or answer is wrong");
             return;
         }
-
-        userDao.resetPassword(user.getUserId(), password);
+        String encryptedPw = (new PassUtil()).encrypt(password);
+        userDao.resetPassword(user.getUserId(), encryptedPw);
         shared.navigateTo("login-view.fxml");
     }
     /**

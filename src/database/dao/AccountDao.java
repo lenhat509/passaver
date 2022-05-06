@@ -164,7 +164,7 @@ public class AccountDao{
      * @return
      */
     public ArrayList<Account> checkExpiredPassword(String userId, LocalDate date) {
-        String query = "SELECT * FROM account WHERE userId = ? AND date(expirationDate) < date(?); ";
+        String query = "SELECT * FROM account WHERE userId = ? AND date(expirationDate) <= date(?); ";
         ArrayList<Account> accountList = new ArrayList<Account>() ;
         try {
             PreparedStatement ps = this.conn.prepareStatement(query);

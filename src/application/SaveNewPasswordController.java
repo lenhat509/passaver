@@ -8,6 +8,7 @@ package application;
 import database.dao.AccountDao;
 import database.models.Account;
 import database.models.User;
+import edu.sjsu.yazdankhah.crypto.util.PassUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -34,13 +35,10 @@ public class SaveNewPasswordController {
     public TextField passwordField;
 
     @FXML
-    public TextField confirmPasswordField;
-
+    public TextField months;
+    
     @FXML
     public TextField creationDateField;
-
-    @FXML
-    public TextField expirationDateField;
 
     @FXML
     public CheckBox capitalLetterCheckBox;
@@ -58,7 +56,7 @@ public class SaveNewPasswordController {
     public TextField passwordDisplay;
 
     public int passwordLength = 15;
-    public int passwordMinSize = 8;
+    public int passwordMinSize = 1;
 
     private SharedProperty shared = SharedProperty.getSharedProperty();
 
@@ -68,9 +66,7 @@ public class SaveNewPasswordController {
      */
     public void initialize() {
         String creationDate = LocalDate.now().toString();
-        String expirationDate = LocalDate.now().plusMonths(3).toString();
         creationDateField.setText(creationDate);
-        expirationDateField.setText(expirationDate);
     }
 
     /**
@@ -82,8 +78,7 @@ public class SaveNewPasswordController {
         String username = usernameField.getText().trim();
         String email = emailField.getText().trim();
         String password = passwordField.getText().trim();
-        String confirmPw = confirmPasswordField.getText().trim();
-        Boolean isMatched = password.equals(confirmPw);
+        String numberOfMonths = months.getText().trim();
 
         if(appName.isEmpty())
         {
@@ -96,19 +91,34 @@ public class SaveNewPasswordController {
             errorLabel.setText("Username or Email is required");
             return;
         }
+        
+        if(numberOfMonths.isEmpty())
+        {
+        	errorLabel.setText("Please enter lifetime of this account");
+        	return;
+        }
+        
+        int monthsInt = 0;
+        try {
+        	monthsInt = Integer.parseInt(numberOfMonths);
+        }
+        catch(Exception ex) {
+        	errorLabel.setText("Invalid number of months");
+        	return;
+        }
 
         if(password.length() < passwordMinSize)
         {
             errorLabel.setText("Password must have at least "+passwordMinSize+ " characters");
             return;
         }
-
-        if(!isMatched)
-        {
-            errorLabel.setText("Passwords do not match");
-            return;
-        }
-        Account newAccount = new Account(appName, email, username, password);
+        
+        
+        PassUtil passUtil = new PassUtil();
+        String encryptedPw = passUtil.encrypt(password);
+        
+        Account newAccount = new Account(appName, email, username, encryptedPw);
+        newAccount.setExpirationDate(newAccount.getCreationDate().plusMonths(monthsInt));
         AccountDao accountDao = shared.getAccountDao();
         User loginUser = shared.getLoginUser();
         accountDao.saveAccount(loginUser.getUserId(), newAccount);

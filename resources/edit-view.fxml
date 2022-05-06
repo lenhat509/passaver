@@ -3,37 +3,40 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="editPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: lightcyan; -fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="application.EditController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: lightcyan; -fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="application.EditController">
     <children>
         <Pane layoutX="54.0" layoutY="130.0" prefHeight="416.0" prefWidth="691.0" style="-fx-background-color: lightblue;">
             <children>
-                <Button layoutX="567.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#updateAccount" style="-fx-background-color: lightgreen; -fx-border-width: 2; -fx-border-color: black;" text="Update Info" />
-                <Label layoutX="118.0" layoutY="334.0" text="Re-enter Password:" />
-                <CheckBox fx:id="capitalLetterCheckBox" layoutX="439.0" layoutY="288.0" mnemonicParsing="false" text="Include Capital Letters" />
-                <CheckBox fx:id="specialCharacterCheckbox" layoutX="252.0" layoutY="288.0" mnemonicParsing="false" text="Include Special Character" />
-                <CheckBox fx:id="clipboardCheckbox" layoutX="547.0" layoutY="209.0" mnemonicParsing="false" onMouseClicked="#copyToClipBoard" text="Copy  to Clipboard" />
-                <Label layoutX="168.0" layoutY="251.0" text="Password:" />
-                <TextField fx:id="expirationDateField" disable="true" layoutX="250.0" layoutY="162.0" />
-                <Label layoutX="137.0" layoutY="167.0" text="Expiration Date:" />
-                <Label layoutX="142.0" layoutY="125.0" text="Creation Date:" />
-                <TextField fx:id="usernameField" layoutX="250.0" layoutY="85.0" />
-                <Label layoutX="159.0" layoutY="90.0" text="Username:" />
-                <TextField fx:id="emailField" layoutX="250.0" layoutY="49.0" />
-                <Label layoutX="189.0" layoutY="56.0" text="Email:" />
-                <TextField fx:id="appNameField" layoutX="250.0" layoutY="16.0" />
                 <Label layoutX="99.0" layoutY="23.0" text="Website or App Name: " />
+                <TextField fx:id="appNameField" layoutX="250.0" layoutY="16.0" />
+                <Label layoutX="189.0" layoutY="56.0" text="Email:" />
+                <TextField fx:id="emailField" layoutX="250.0" layoutY="49.0" />
+                <Label layoutX="159.0" layoutY="90.0" text="Username:" />
+                <TextField fx:id="usernameField" layoutX="250.0" layoutY="85.0" />
+                <Label layoutX="142.0" layoutY="125.0" text="Creation Date:" />
                 <TextField fx:id="creationDateField" disable="true" layoutX="249.0" layoutY="120.0" />
-                <Button layoutX="460.0" layoutY="204.0" mnemonicParsing="false"  onMouseClicked="#generatePassword" prefHeight="27.0" prefWidth="77.0" text="Generate" />
-                <PasswordField fx:id="passwordField" layoutX="248.0" layoutY="247.0" prefHeight="26.0" prefWidth="224.0" promptText="Leave empty to not change password" />
-                <PasswordField fx:id="confirmPasswordField" layoutX="249.0" layoutY="332.0" prefHeight="26.0" prefWidth="224.0" promptText="Leave empty to not change password" />
-                <TextField fx:id="passwordDisplay" editable="false" layoutX="249.0" layoutY="204.0" prefHeight="26.0" prefWidth="160.0" promptText="Password Generated" />
-                <Button layoutX="499.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#cancelUpdate" style="-fx-background-color: lightgreen; -fx-border-width: 2; -fx-border-color: black;" text="Cancel" />
+	            <Label layoutX="252.0" layoutY="155.0" prefHeight="18.0" prefWidth="189.0" text="(Enter the lifetime of the account)">
+	               <font>
+	                  <Font name="System Italic" size="13.0" />
+	               </font>
+	            </Label>
+	            <Label layoutX="156.0" layoutY="186.0" text="Expire After:" />
+	            <TextField fx:id="months" layoutX="250.0" layoutY="181.0" prefHeight="26.0" prefWidth="66.0" promptText="0, 1, etc" />
+	            <Label layoutX="325.0" layoutY="186.0" text="months" />
+	            <TextField fx:id="passwordDisplay" editable="false" layoutX="250.0" layoutY="219.0" prefHeight="26.0" prefWidth="160.0" promptText="Generated Password" />
+	            <Button layoutX="456.0" layoutY="219.0" mnemonicParsing="false" onMouseClicked="#generatePassword" prefHeight="27.0" prefWidth="77.0" text="Generate" />
+	            <CheckBox fx:id="clipboardCheckbox" layoutX="538.0" layoutY="223.0" mnemonicParsing="false" onMouseClicked="#copyToClipBoard" text="Copy  to Clipboard" />
+                <CheckBox fx:id="specialCharacterCheckbox" layoutX="250.0" layoutY="257.0" mnemonicParsing="false" text="Include Special Character" />
+                <CheckBox fx:id="capitalLetterCheckBox" layoutX="429.0" layoutY="257.0" mnemonicParsing="false" text="Include Capital Letters" />
+                <Label layoutX="161.0" layoutY="294.0" text="Password:" />
+	            <TextField fx:id="passwordField" layoutX="250.0" layoutY="290.0" prefHeight="26.0" prefWidth="206.0" />
+	            <Button layoutX="479.0" layoutY="344.0" mnemonicParsing="false" onMouseClicked="#cancelUpdate" style="-fx-background-color: lightgreen; -fx-border-width: 2; -fx-border-color: black;" text="Cancel" />
+                <Button layoutX="553.0" layoutY="344.0" mnemonicParsing="false" onMouseClicked="#updateAccount" style="-fx-background-color: lightgreen; -fx-border-width: 2; -fx-border-color: black;" text="Save Info" />
             </children>
         </Pane>
         <Label layoutX="44.0" layoutY="31.0" text="Passaver">
@@ -41,6 +44,6 @@
                 <Font size="36.0" />
             </font>
         </Label>
-        <Label fx:id="errorLabel" alignment="CENTER" layoutX="55.0" layoutY="84.0" prefHeight="35.0" prefWidth="689.0" textFill="RED" />
+      <Label fx:id="errorLabel" alignment="CENTER" layoutX="55.0" layoutY="84.0" prefHeight="35.0" prefWidth="689.0" textFill="RED" />
     </children>
 </AnchorPane>

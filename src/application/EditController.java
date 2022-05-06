@@ -8,6 +8,7 @@ package application;
 import database.dao.AccountDao;
 import database.models.Account;
 import database.models.User;
+import edu.sjsu.yazdankhah.crypto.util.PassUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -38,13 +39,7 @@ public class EditController {
     public TextField passwordField;
 
     @FXML
-    public TextField confirmPasswordField;
-
-    @FXML
     public TextField creationDateField;
-
-    @FXML
-    public TextField expirationDateField;
 
     @FXML
     public CheckBox capitalLetterCheckBox;
@@ -57,12 +52,15 @@ public class EditController {
 
     @FXML
     public Label errorLabel;
+    
+    @FXML
+    public TextField months;
 
     @FXML
     public TextField passwordDisplay;
 
     public int passwordLength = 15;
-    public int passwordMinSize = 8;
+    public int passwordMinSize = 1;
 
     private SharedProperty shared = SharedProperty.getSharedProperty();
     private Account account;
@@ -79,11 +77,12 @@ public class EditController {
         appNameField.setText(account.getAppName());
         usernameField.setText(account.getUsername());
         emailField.setText(account.getEmail());
+        PassUtil passUtil = new PassUtil();
+        String decryptedPw = passUtil.decrypt(account.getPassword());
+        passwordField.setText(decryptedPw);
         String creationDate = LocalDate.now().toString();
-        String expirationDate = LocalDate.now().plusMonths(3).toString();
         creationDateField.setText(creationDate);
-        expirationDateField.setText(expirationDate);
-
+        
     }
 
     /**
@@ -95,9 +94,8 @@ public class EditController {
         String username = usernameField.getText().trim();
         String email = emailField.getText().trim();
         String password = passwordField.getText().trim();
-        String confirmPw = confirmPasswordField.getText().trim();
-        Boolean isMatched = password.equals(confirmPw);
-
+        String numberOfMonths = months.getText().trim();
+        
         if(appName.isEmpty())
         {
             errorLabel.setText("App Name is required");
@@ -109,26 +107,35 @@ public class EditController {
             errorLabel.setText("Username or Email is required");
             return;
         }
+        
+        if(numberOfMonths.isEmpty())
+        {
+        	errorLabel.setText("Please enter lifetime of this account");
+        	return;
+        }
+        
+        int monthsInt = 0;
+        try {
+        	monthsInt = Integer.parseInt(numberOfMonths);
+        }
+        catch(Exception ex) {
+        	errorLabel.setText("Invalid number of months");
+        	return;
+        }
 
-        if(password.length() < passwordMinSize && password.length() != 0)
+        if(password.length() < passwordMinSize)
         {
             errorLabel.setText("Password must have at least "+passwordMinSize+ " characters");
             return;
         }
-
-        if(!isMatched)
-        {
-            errorLabel.setText("Passwords do not match");
-            return;
-        }
-
-        if(password.length() != 0)
-            account.setPassword(passwordField.getText());
-        account.setAppName(appNameField.getText());
-        account.setUsername(usernameField.getText());
-        account.setEmail(emailField.getText());
+        PassUtil passUtil = new PassUtil();
+        String encryptedPw = passUtil.encrypt(passwordField.getText().trim());
+        account.setPassword(encryptedPw);
+        account.setAppName(appNameField.getText().trim());
+        account.setUsername(usernameField.getText().trim());
+        account.setEmail(emailField.getText().trim());
         account.setCreationDate(LocalDate.parse(creationDateField.getText()));
-        account.setExpirationDate(LocalDate.parse(expirationDateField.getText()));
+        account.setExpirationDate(LocalDate.parse(creationDateField.getText()).plusMonths(monthsInt));
         AccountDao accountDao = shared.getAccountDao();
         accountDao.editAccount(account);
         shared.navigateTo("home-view.fxml");

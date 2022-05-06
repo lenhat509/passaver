@@ -8,6 +8,7 @@ package application;
 import database.dao.AccountDao;
 import database.models.Account;
 import database.models.User;
+import edu.sjsu.yazdankhah.crypto.util.PassUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -18,6 +19,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 
@@ -85,12 +87,28 @@ public class HomeController {
         Pane accountPane = null;
         try {
             accountPane = (Pane) FXMLLoader.load(getClass().getClassLoader().getResource("account.fxml"));
-            Label appName = (Label) accountPane.getChildren().get(4);
-            Label email = (Label) accountPane.getChildren().get(6);
-            Label userName = (Label) accountPane.getChildren().get(7);
+            Label appName = (Label) accountPane.getChildren().get(2);
+            Label email = (Label) accountPane.getChildren().get(4);
+            Label userName = (Label) accountPane.getChildren().get(5);
+            Label password = (Label) accountPane.getChildren().get(7);
+            Label expirationDate = (Label) accountPane.getChildren().get(12);
+            Label creationDate = (Label) accountPane.getChildren().get(11);
+            Label expiredWarning = (Label) accountPane.getChildren().get(14);
+            
             appName.setText(account.getAppName());
             email.setText(account.getEmail());
             userName.setText(account.getUsername());
+            
+            PassUtil passUtil = new PassUtil();
+            String decryptedPw = passUtil.decrypt(account.getPassword());
+            password.setText(decryptedPw);
+            
+            expirationDate.setText(account.getExpirationDate().toString());
+            creationDate.setText(account.getCreationDate().toString());
+            
+            if(LocalDate.now().compareTo(account.getExpirationDate()) >= 0)
+            	expiredWarning.setVisible(true);
+            
             accountPane.setAccessibleText(account.getAccountId());
         } catch (IOException e) {
             e.printStackTrace();
@@ -131,4 +149,7 @@ public class HomeController {
         shared.setLoginUser(null);
         shared.navigateTo("login-view.fxml");
     }
+    
+   
+    
 }

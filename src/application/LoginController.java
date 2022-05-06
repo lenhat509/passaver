@@ -8,6 +8,7 @@ package application;
 
 import database.dao.UserDao;
 import database.models.User;
+import edu.sjsu.yazdankhah.crypto.util.PassUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -37,15 +38,18 @@ public class LoginController {
         String password = passwordField.getText();
         UserDao userDao = shared.getUserDao();
         User user = userDao.search(username);
-
+        
         if(user == null)
         {
             errorLabel.setText("This UserId does not exists");
             return;
         }
-
-        if(!user.getPassword().equals(password))
+        
+        PassUtil passUtil = new PassUtil();
+        String decryptedPass = passUtil.decrypt(user.getPassword());
+        if(!decryptedPass.equals(password))
         {
+        	
             errorLabel.setText("Incorrect Password");
             return;
         }

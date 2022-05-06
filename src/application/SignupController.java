@@ -7,6 +7,7 @@ package application;
 
 import database.dao.UserDao;
 import database.models.User;
+import edu.sjsu.yazdankhah.crypto.util.PassUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -39,7 +40,7 @@ public class SignupController {
     @FXML
     public Label errorLabel;
 
-    private int passwordMinSize = 8;
+    private int passwordMinSize = 1;
 
     private SharedProperty shared = SharedProperty.getSharedProperty();
 
@@ -95,7 +96,9 @@ public class SignupController {
             errorLabel.setText("This UserId already exists");
             return;
         }
-        User newUser = new User(userId, password, securityQuestion, securityAnswer);
+        PassUtil passUtil = new PassUtil();
+        String encryptedPw = passUtil.encrypt(password);
+        User newUser = new User(userId, encryptedPw, securityQuestion, securityAnswer);
         userDao.addUser(newUser);
         shared.navigateTo("login-view.fxml");
     }

@@ -21,7 +21,7 @@
                         <Font size="40.0" />
                      </font>
                   </Label>
-                  <Button fx:id="createPasswordBtn" layoutX="14.0" layoutY="540.0" mnemonicParsing="false" onMouseClicked="#createPassword" prefHeight="44.0" prefWidth="251.0" text="Save New Password" />
+                  <Button layoutX="14.0" layoutY="540.0" mnemonicParsing="false" onMouseClicked="#createPassword" prefHeight="44.0" prefWidth="251.0" text="Save New Password" />
                   <Pane layoutX="14.0" layoutY="203.0" prefHeight="227.0" prefWidth="251.0" style="-fx-background-color: white;">
                      <children>
                         <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="32.0" prefWidth="92.0" text="Current user:">
@@ -50,8 +50,8 @@
                         </FlowPane>
                      </content>
                   </ScrollPane>
-                  <TextField fx:id="searchTextField" layoutX="9.0" layoutY="67.0" prefHeight="26.0" prefWidth="307.0" />
-                  <Button fx:id="searchBtn" layoutX="420.0" layoutY="67.0" mnemonicParsing="false" onMouseClicked="#searchAccount" prefHeight="26.0" prefWidth="86.0" text="Search" />
+                  <TextField fx:id="searchTextField" layoutX="9.0" layoutY="67.0" prefHeight="26.0" prefWidth="307.0" promptText="Enter AppName or Username"/>
+                  <Button layoutX="420.0" layoutY="67.0" mnemonicParsing="false" onMouseClicked="#searchAccount" prefHeight="26.0" prefWidth="86.0" text="Search" />
                   <Button fx:id="cancelBtn" disable="true" layoutX="342.0" layoutY="67.0" mnemonicParsing="false" onMouseClicked="#resetAccountList" prefHeight="26.0" prefWidth="61.0" text="Cancel" />
                </children>
             </Pane>
