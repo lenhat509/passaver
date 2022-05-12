@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="accountPane" prefHeight="118.0" prefWidth="498.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AccountController">
+<Pane fx:id="accountPane" prefHeight="118.0" prefWidth="498.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="application.AccountController">
     <children>
        <Label layoutX="44.0" layoutY="14.0" text="App Name:" />
        <Label layoutX="45.0" layoutY="36.0" text="Username:" />
@@ -14,12 +14,13 @@
        <Label fx:id="userName" layoutX="120.0" layoutY="36.0" prefHeight="17.0" prefWidth="78.0" />
        <Label layoutX="205.0" layoutY="14.0" prefHeight="17.0" prefWidth="38.0" text="Email:" />
        <Label fx:id="password" layoutX="265.0" layoutY="36.0" prefHeight="17.0" prefWidth="130.0" text="" />
-       <Button fx:id="editBtn" layoutX="402.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#editAccount" prefHeight="26.0" prefWidth="56.0" text="Edit" />
+       <Button fx:id="editBtn" layoutX="399.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#editAccount" prefHeight="26.0" prefWidth="56.0" text="Edit" />
        <Label layoutX="45.0" layoutY="59.0" prefHeight="17.0" prefWidth="100.0" text="Creation date:" />
        <Label layoutX="45.0" layoutY="81.0" prefHeight="17.0" prefWidth="100.0" text="Expiration date:" />
-       <Label fx:id="creationDate" layoutX="148.0" layoutY="58.0" prefHeight="19.0" prefWidth="114.0" />
-       <Label fx:id="expirationDate" layoutX="148.0" layoutY="80.0" prefHeight="19.0" prefWidth="114.0" />
-       <Button fx:id="deleteBtn" layoutX="402.0" layoutY="54.0" mnemonicParsing="false" onMouseClicked="#deleteAccount" prefHeight="26.0" prefWidth="57.0" text="Delete" />
-       <Label fx:id="expiredWarning" layoutX="273.0" layoutY="80.0" prefHeight="19.0" prefWidth="114.0" text="(Expired Account)" textFill="RED" visible="false" />
+       <Label fx:id="creationDate" layoutX="148.0" layoutY="58.0" prefHeight="19.0" prefWidth="77.0" />
+       <Label fx:id="expirationDate" layoutX="148.0" layoutY="80.0" prefHeight="19.0" prefWidth="78.0" />
+       <Button fx:id="deleteBtn" layoutX="400.0" layoutY="44.0" mnemonicParsing="false" onMouseClicked="#deleteAccount" prefHeight="26.0" prefWidth="57.0" text="Delete" />
+       <Label fx:id="expiredWarning" layoutX="231.0" layoutY="80.0" prefHeight="19.0" prefWidth="100.0" text="(Expired Account)" textFill="RED" visible="false" />
+      <Button fx:id="copyToClipboard" layoutX="365.0" layoutY="77.0" mnemonicParsing="false" onMouseClicked="#copyToClipBoard" prefHeight="26.0" prefWidth="121.0" text="Copy To Clipboard" />
     </children>
 </Pane>

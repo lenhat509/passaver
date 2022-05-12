@@ -15,25 +15,22 @@
     <children>
       <Pane layoutX="412.0" layoutY="128.0" prefHeight="370.0" prefWidth="369.0" style="-fx-background-color: eaf4fc; -fx-border-color: c7e0f6; -fx-border-radius: 10; -fx-border-width: 3;">
          <children>
-              <Text layoutX="32.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UserId" wrappingWidth="70.94848613605086">
+            <Text layoutX="32.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UserId" wrappingWidth="70.94848613605086">
                <font>
                   <Font name="Times New Roman" size="24.0" />
                </font>
             </Text>
-              <TextField fx:id="usernameField" layoutX="155.0" layoutY="64.0" prefHeight="26.0" prefWidth="188.0" />
-      
-                    <Text layoutX="31.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password: ">
+            <TextField fx:id="usernameField" layoutX="155.0" layoutY="64.0" prefHeight="26.0" prefWidth="188.0" />
+            <Text layoutX="31.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password: ">
                <font>
                   <Font name="Times New Roman" size="24.0" />
                </font>
             </Text>
             <PasswordField fx:id="passwordField" layoutX="156.0" layoutY="115.0" prefHeight="26.0" prefWidth="187.0" />
-      
-                                      <Button layoutX="29.0" layoutY="186.0" mnemonicParsing="false" onMouseClicked="#validate" prefHeight="26.0" prefWidth="312.0" text="Login" />
-      
-                    <Line endX="200.57391357421875" layoutX="151.0" layoutY="243.0" startX="-126.25930786132812" />
-              <Hyperlink layoutX="83.0" layoutY="276.0" onMouseClicked="#goToResetPw" style="-fx-underline: F;" text="Forgot Password" />
-              <Button layoutX="226.0" layoutY="274.0" mnemonicParsing="false" onMouseClicked="#goToSignUp" prefHeight="26.0" prefWidth="106.0" text="Sign-Up" />
+            <Button layoutX="29.0" layoutY="186.0" mnemonicParsing="false" onMouseClicked="#validate" prefHeight="26.0" prefWidth="312.0" text="Login" />
+            <Line endX="200.57391357421875" layoutX="151.0" layoutY="243.0" startX="-126.25930786132812" />
+            <Hyperlink layoutX="83.0" layoutY="276.0" onMouseClicked="#goToResetPw" style="-fx-underline: F;" text="Forgot Password" />
+            <Button layoutX="226.0" layoutY="274.0" mnemonicParsing="false" onMouseClicked="#goToSignUp" prefHeight="26.0" prefWidth="106.0" text="Sign-Up" />
          </children>
       </Pane>
       <Text fill="#707070" fontSmoothingType="LCD" layoutX="33.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passaver" wrappingWidth="325.8848991394043">

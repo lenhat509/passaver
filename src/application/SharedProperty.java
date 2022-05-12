@@ -123,38 +123,50 @@ public class SharedProperty {
      * generate a random password
      * @param capital
      * @param special
-     * @param passwordLength
+     * @param minLength
+     * @param maxLength
      * @return
      */
-    public StringBuilder generatePassword(CheckBox capital, CheckBox special, int passwordLength) {
-        String numberList = "0123456789";
-        String lowercaseList = "abcdefghijklmnopqrstuvwxyz";
-        String uppercaseList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        String specialCharacterList = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
-
-        ArrayList<String> characterTypes = new ArrayList<>();
-        characterTypes.add(numberList);
-        characterTypes.add(lowercaseList);
-
-        Boolean isCapital = capital.isSelected();
-        Boolean isSpecial = special.isSelected();
-
-        if(isCapital) characterTypes.add(uppercaseList);
-        if(isSpecial) characterTypes.add(specialCharacterList);
-
-        Random typeRandom = new Random();
-        Random characterRandom = new Random();
-
-        StringBuilder sb = new StringBuilder();
-
-        for(int i = 0; i < passwordLength; i++) {
-            int typeIndex = typeRandom.nextInt(characterTypes.size());
-            String type = characterTypes.get(typeIndex);
-            int charIndex = characterRandom.nextInt(type.length());
-            sb.append(type.charAt(charIndex));
+    public StringBuilder generatePassword(int capital, int special, int minLength, int maxLength) { 
+        StringBuilder password = new StringBuilder();
+        
+        if(capital + special <= maxLength) {
+        	String numberList = "0123456789";
+            String lowercaseList = "abcdefghijklmnopqrstuvwxyz";
+            String uppercaseList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            String specialCharacterList = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+            
+            Random random = new Random();
+            
+            int normalCharMax = maxLength - (capital + special);
+            int normalCharMin = minLength >= (capital + special) ? minLength - (capital + special) : 0;
+            int normalChar = normalCharMin + random.nextInt(normalCharMax - normalCharMin + 1);
+            
+            ArrayList<String> numberAndAlphabet = new ArrayList<String>();
+            numberAndAlphabet.add(numberList);
+            numberAndAlphabet.add(lowercaseList);
+            
+            for(int i = 0; i < normalChar; i++) {
+            	int type = random.nextInt(numberAndAlphabet.size());
+            	String list = numberAndAlphabet.get(type);
+            	int index = random.nextInt(list.length());
+            	password.append(list.charAt(index));
+            }
+            
+            for(int i = 0; i < special; i ++) {
+            	int index = random.nextInt(password.length()+1);
+            	char specialChar = specialCharacterList.charAt(random.nextInt(specialCharacterList.length()));
+            	password.insert(index, specialChar);
+            }
+            
+            for(int i = 0; i < capital; i ++) {
+            	int index = random.nextInt(password.length()+1);
+            	char uppercaseLetter = uppercaseList.charAt(random.nextInt(uppercaseList.length()));
+            	password.insert(index, uppercaseLetter);
+            }   
         }
-
-        return sb;
+        
+        return password;
     }
 
 }

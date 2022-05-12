@@ -6,17 +6,21 @@
 package application;
 
 import database.dao.AccountDao;
+import database.models.Account;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 public class AccountController {
 
     @FXML
     public Pane accountPane;
+    
+    @FXML
+    public Label password;
 
     private SharedProperty shared = SharedProperty.getSharedProperty();
 
@@ -41,4 +45,16 @@ public class AccountController {
     	accountDao.deleteAccount(id);
     	shared.navigateTo("home-view.fxml");
     }
+    /**
+     * copy generated password to clipboard
+     * @param mouseEvent
+     */
+    @FXML
+    public void copyToClipBoard(MouseEvent mouseEvent) {
+    	String id = accountPane.getAccessibleText();
+        ClipboardContent cc = new ClipboardContent();
+        cc.putString(password.getText());
+        Clipboard.getSystemClipboard().setContent(cc);
+    }
+    
 }

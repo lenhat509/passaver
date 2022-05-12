@@ -41,21 +41,26 @@ public class SaveNewPasswordController {
     public TextField creationDateField;
 
     @FXML
-    public CheckBox capitalLetterCheckBox;
-
-    @FXML
-    public CheckBox specialCharacterCheckbox;
-
-    @FXML
     public CheckBox clipboardCheckbox;
 
     @FXML
     public Label errorLabel;
+    
+    @FXML
+    public TextField specialCharacters;
+    
+    @FXML
+    public TextField capitalLetters;
 
     @FXML
     public TextField passwordDisplay;
+    
+    @FXML
+    public TextField minLength;
+    
+    @FXML
+    public TextField maxLength;
 
-    public int passwordLength = 15;
     public int passwordMinSize = 1;
 
     private SharedProperty shared = SharedProperty.getSharedProperty();
@@ -67,6 +72,10 @@ public class SaveNewPasswordController {
     public void initialize() {
         String creationDate = LocalDate.now().toString();
         creationDateField.setText(creationDate);
+        minLength.setText("10");
+        maxLength.setText("20");
+        capitalLetters.setText("0");
+        specialCharacters.setText("0");
     }
 
     /**
@@ -130,10 +139,19 @@ public class SaveNewPasswordController {
      * @param mouseEvent
      */
     public void generatePassword(MouseEvent mouseEvent) {
-        StringBuilder sb = shared.generatePassword(capitalLetterCheckBox, specialCharacterCheckbox, passwordLength);
-        String generatedPassword = sb.toString();
-        passwordDisplay.setText("");
-        passwordDisplay.setText(generatedPassword);
+    	try {
+    		int min = Integer.parseInt(minLength.getText());
+        	int max = Integer.parseInt(maxLength.getText());
+        	int capital = Integer.parseInt(capitalLetters.getText());
+        	int special = Integer.parseInt(specialCharacters.getText());
+        	if(min < 0 || max <= 0 || max < min || capital < 0 || special < 0) throw new Exception();
+            StringBuilder sb = shared.generatePassword(capital, special, min, max);
+            String generatedPassword = sb.toString();
+            passwordDisplay.setText("");
+            passwordDisplay.setText(generatedPassword);
+    	}
+    	catch(Exception e) {}
+    	
     }
 
     /**
